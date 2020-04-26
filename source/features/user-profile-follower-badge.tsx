@@ -1,4 +1,3 @@
-import './user-profile-follower-badge.css';
 import React from 'dom-chef';
 import cache from 'webext-storage-cache';
 import select from 'select-dom';
@@ -20,8 +19,8 @@ const doesUserFollow = cache.function(async (userA: string, userB: string): Prom
 
 async function init(): Promise<void> {
 	if (await doesUserFollow(getCleanPathname(), getUsername())) {
-		select('.vcard-names-container:not(.is-placeholder)')!.after(
-			<div className="rgh-follower-badge">Follows you</div>
+		select('[itemtype="http://schema.org/Person"] > .vcard-username')!.after(
+			<span className="Label Label--gray ml-2">Follows you</span>
 		);
 	}
 }
